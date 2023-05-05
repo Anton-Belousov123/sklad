@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Склад{% endblock %}
+{% block content %}
+    <div class="container d-flex justify-content-center">
+        <h1 class="display-5 m-4">
+            <mark>Управление товарами</mark>
+        </h1>
+    </div>
+<div class="container">
+    <table class="table table-boarded">
+        <thead class="table-dark">
+        <th class="col">#</th>
+        <th class="col-4">Название</th>
+        <th class="col">Цена</th>
+        <th class="col">Остаток</th>
+        <th class="col">Активен</th>
+        <th class="col">Вопросы</th>
+        <th class="col-2">Ссылки</th>
+        <th class="col">Статистика</th>
+        </thead>
+        <tbody>
+        {% for item in data %}
+            {% if item['is_active'] == True %}
+        <tr class="table-success align-middle">
+            {% elif item['questions'] == False %}
+        <tr class="table-warning align-middle">
+            {% else %}
+        <tr class="table-danger align-middle">
+            {% endif %}
+
+            <td>{{loop.index + 25 * (page_number - 1)}}</td>
+            <td>{{item['name']}}</td>
+            <td>{{item['price']}}</td>
+            <td>{{item['count']}}</td>
+            <td>{%if item['is_active'] %} + {% else %} - {% endif %}</td>
+            <td>{%if item['questions'] %}
+                <a href="/search-item?item_id=1#questions" class="btn btn-secondary rounded-pill text-white">+</a>
+                {% else %} - {% endif %}</td>
+            <td>
+                <a href="https://ozon.ru" class="btn btn-secondary rounded-pill text-white">Ozon</a>
+                <a href="https://rozetkin.ru/" class="btn btn-secondary rounded-pill text-white">Rozetkin</a>
+
+            </td>
+            <td><a href="/search-stats?item_id=1" class="btn btn-secondary rounded-pill">Посмотреть</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <thead class="table-dark">
+        <th></th>
+        <th>Показано {{ items_current }} / {{ items_max }} товаров</th>
+        <th><a class="text-white" href="/storage?page={{page_number - 1}}">Назад</a></th>
+        <th></th>
+        <th><a class="text-white" href="/storage?page={{page_number + 1}}">Вперед</a></th>
+        <th class="text-center"> |</th>
+        <th>Страница:</th>
+        <th>{{ page_number }} / {{ pages_count }}</th>
+        </thead>
+    </table>
+</div>
+{% endblock %}
