@@ -87,4 +87,4 @@ def index():
     return render_template('index.html', created_count=created_count, source_parsed_count=source_parsed_count, target_parsed_count=target_parsed_count, suggested_count=suggested_count)
 
 
-app.run(debug=True, port=8080)
+app.run(debug=True, host='0.0.0.0', port=8080)
