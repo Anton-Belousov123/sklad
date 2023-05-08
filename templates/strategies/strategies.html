@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Главное меню{% endblock %}
+{% block content %}
+<div class="container d-flex justify-content-center">
+    <h1 class="display-5 m-4">
+        <a href="/"><mark>Стратегии</mark></a>
+
+    </h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <a href="/strategies">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Стратегия Олега [<mark style="background-color: greenyellow; color: blue">Выбрана</mark>]</h5>
+                        <p class="card-text"><h6><mark>Как она работает?</mark></h6></p>
+                        <p class="card-text">Осуществляется сбор цены самого дешевого аналога товара</p>
+                        <p class="card-text">Если цена аналога выше чем издержки доставки товара до покупателя
+                            (costs) + налог (taxes) + закупочная цена товара (purchase price) более чем на 15%, то
+                            ставится цена ниже аналога на 5%. В противном случае выставляется цена с наценкой в 15%.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

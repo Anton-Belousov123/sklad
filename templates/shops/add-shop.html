@@ -1,0 +1,33 @@
+
+{% block content %}
+       <div class="modal fade" id="add-ozon">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editMainModalLabel">Добавление нового магазина Ozon</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="/shops">
+                            <div class="mb-3">
+                                <label for="client-id" class="form-label">Введите название магазина:</label>
+                                <input type="text" class="form-control" id="shop-name" name="shop-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="client-id" class="form-label">Введите Client ID:</label>
+                                <input type="text" class="form-control" id="client-id" name="client-id">
+                            </div>
+                            <div class="mb-3">
+                                <label for="api-key" class="form-label">Введите Api KEY:</label>
+                                <input type="text" class="form-control" id="api-key" name="api-key"
+                                       >
+                            </div>
+                            <button type="submit" class="btn btn-primary">Добавить</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
