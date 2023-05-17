@@ -1,4 +1,3 @@
-
 from sc import secret
 import psycopg2
 import dataclasses
@@ -12,19 +11,20 @@ def get_pack_type_by_article(article):
         password=secret.DATABASE_PASSWORD,
     )
     cur = conn.cursor()
-    cur.execute(f"SELECT * FROM ozon_items WHERE article=%s",
-                (str(article), ))
+    cur.execute(f"SELECT pack_type FROM ozon_items WHERE article=%s",
+                (str(article),))
     el = cur.fetchone()
     conn.close()
     try:
-        print(el[0])
         return el[0]
     except:
-        return el
+        return "Не задан"
+
 
 class Database:
     def __init__(self):
         self.table_name = secret.MODE
+
     def get_count(self, stage):
         self.conn = psycopg2.connect(
             host=secret.DATABASE_HOST,
@@ -33,7 +33,7 @@ class Database:
             password=secret.DATABASE_PASSWORD,
         )
         self.cur = self.conn.cursor()
-        self.cur.execute("SELECT COUNT(*) FROM kamran WHERE stage=%s LIMIT 1;", (stage, ))
+        self.cur.execute("SELECT COUNT(*) FROM kamran WHERE stage=%s LIMIT 1;", (stage,))
         record = self.cur.fetchone()
         self.conn.close()
         return record[0]
@@ -77,7 +77,6 @@ class Database:
         self.conn.close()
         return records
 
-
     def get_nakleiki(self, from_element: int):
         self.conn = psycopg2.connect(
             host=secret.DATABASE_HOST,
@@ -103,6 +102,3 @@ class Database:
                     (pack_type, article))
         conn.commit()
         conn.close()
-
-
-
