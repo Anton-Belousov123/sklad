@@ -45,19 +45,19 @@
             </a>
         </div>
         <div class="col-md-3">
-            <a href="/strategies">
+            <a href="/adding">
                 <div class="card mt-4">
                     <img src="https://img.freepik.com/premium-vector/business-statistics-cartoon-style-vector-concept-illustration_92926-1741.jpg"
                          class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">Стратегии</h5>
-                        <p class="card-text">Стратегии продаж и многое совсем другое</p>
+                        <h5 class="card-title">Добавление товаров</h5>
+                        <p class="card-text">Информация о проблемах с товарами</p>
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-md-3">
-            <a href="?">
+            <a>
                 <div class="card mt-4">
                     <div class="card-body">
                         <h5 class="card-title">{{ created_count }} товаров</h5>
@@ -67,9 +67,9 @@
             </a>
         </div>
         <div class="col-md-3">
-            <a href="/adding">
-                <div class="card mt-4">
-                    <div class="card-body">
+            <a>
+                <div class="card mt-4" style="background-color: mediumpurple; color: white">
+                    <div class="card-body" >
                         <h5 class="card-title">{{ source_parsed_count }} товаров</h5>
                         <p class="card-text">находятся в очереди на сбор данных на сайте Ozon</p>
                     </div>
@@ -77,8 +77,8 @@
             </a>
         </div>
         <div class="col-md-3">
-            <a href="/adding">
-                <div class="card mt-4">
+            <a>
+                <div class="card mt-4" style="background-color: mediumpurple; color: white">
                     <div class="card-body">
                         <h5 class="card-title">{{ target_parsed_count }} товаров</h5>
                         <p class="card-text">ждут обработки человеком в телеграм боте</p>
@@ -87,8 +87,8 @@
             </a>
         </div>
         <div class="col-md-3">
-            <a href="/adding">
-                <div class="card mt-4">
+            <a>
+                <div class="card mt-4" style="background-color: green; color: white">
                     <div class="card-body">
                         <h5 class="card-title">{{ suggested_count }} товаров</h5>
                         <p class="card-text">было согласовано в телеграм боте начиная с 08.05.2023</p>
@@ -96,6 +96,37 @@
                 </div>
             </a>
         </div>
+        <div class="col-md-3">
+            <a>
+                <div class="card mt-4" style="background-color: crimson; color: white">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ source_error }} товаров</h5>
+                        <p class="card-text">хранится в базе с ошибками парсинга источника</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="/adding/stats">
+                <div class="card mt-4" style="background-color: darkmagenta; color: white">
+                    <div class="card-body">
+                        <h5 class="card-title">Посмотреть статистику добавления товаров</h5>
+                        <p class="card-text">Узнать, сколько сегодня, а также по периоду добавил товаров человек через телеграм бота</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+     <div class="col-md-3" >
+            <a>
+                <div class="card mt-4" style="background-color: crimson; color: white">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ target_error }} товаров</h5>
+                        <p class="card-text">находится в базе ошибок парсинга Ozon</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
     </div>
 </div>
 {% endblock %}

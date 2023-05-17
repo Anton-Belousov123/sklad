@@ -13,11 +13,13 @@ class SecretInfo:
     DATABASE_PASSWORD: str
     DATABASE_HOST: str
     DATABASE_PORT: str
+    MODE: str
 
 
 secret = SecretInfo(DATABASE_NAME=os.getenv('DATABASE_NAME'),
                     DATABASE_LOGIN=os.getenv('DATABASE_LOGIN'),
                     DATABASE_PASSWORD=os.getenv('DATABASE_PASSWORD'),
                     DATABASE_HOST=os.getenv('DATABASE_HOST'),
-                    DATABASE_PORT=os.getenv('DATABASE_PORT')
+                    DATABASE_PORT=os.getenv('DATABASE_PORT'),
+                    MODE=os.getenv('kamran')
                     )

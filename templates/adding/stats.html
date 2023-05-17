@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Главное меню{% endblock %}
+{% block content %}
+<div class="container d-flex justify-content-center">
+    <h1 class="display-5 m-4">
+        <mark>Главное меню</mark>
+    </h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <a>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ created_count }} товаров</h5>
+                        <p class="card-text">ждут сбора данных с сайта поставщика</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    {% include "graphic.html" %}
+</div>
+{% endblock %}

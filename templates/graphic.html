@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center">
+    <div style="height: 50vh; width: 50%;">
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const data = {{ data|tojson }};
+    const labels = {{ labels|tojson }};
+    const title = {{ title|tojson }};
+    const legends = {{ legends|tojson }};
+    const datasets = [];
+    for (let i = 0; i < data.length; i++) {
+        datasets.push({
+            label: legends[i],
+            data: data[i].data,
+            borderColor: `hsl(${(i * 50) % 360}, 70%, 50%)`,
+            fill: false
+        });
+    }
+    const config = {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title,
+                    color: 'white'
+                },
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: 'white'
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'white'
+                    }
+                }
+            }
+        }
+    };
+    var myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
+{% endblock %}

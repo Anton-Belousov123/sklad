@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Подпись наклеек{% endblock %}
+{% block content %}
+<div class="container d-flex justify-content-center">
+    <h1 class="display-5 m-4">
+        <mark>Управление наклейками</mark>
+    </h1>
+</div>
+<div class="container">
+    <div class="row">
+    <form action="/nakleiki-download" method="POST">
+    <button type="submit" class="button btn-primary">Скачать наклейки</button>
+        </form>
+</div>
+    <br/>
+    <table class="table table-boarded">
+        <thead class="table-dark">
+        <tr>
+            <th>№</th>
+            <th>Фото</th>
+            <th>Название</th>
+            <th>Тип упаковки</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in data %}
+        {% if loop.index % 2 == 0 %}
+        <tr class="table-warning align-middle">
+            {% else %}
+        <tr class="table-success align-middle">
+            {% endif %}
+            <td>{{item['number']}}</td>
+            <td><img src="{{item['photo']}}" alt="Фото 1" style="width: 100px; height: 100px"></td>
+            <td>{{item['name']}}</td>
+            <td contenteditable="true" style="border: 1px solid black" id="{{item['number']}}">{{item['pack_type']}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <thead class="table-dark">
+        <th>Показано {{ items_current }} / {{ items_max }} товаров</th>
+        <th><a class="text-white" href="/nakleiki?page={{page_number - 1}}">Назад</a></th>
+
+        <th><a class="text-white" href="/nakleiki?page={{page_number + 1}}">Вперед</a></th>
+
+        <th>Страница: {{ page_number }} / {{ pages_count }}</th>
+        </thead>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script>
+    // Find all 'tr' elements within the table
+    const tableRows = document.querySelectorAll('table td');
+
+    // Add an event listener to each 'tr' element
+    tableRows.forEach((row) => {
+        row.addEventListener('input', sendDataToFlask);
+    });
+
+    // Event handler function
+    function sendDataToFlask() {
+        const cellId = event.target.id;
+        const updatedValue = event.target.textContent;
+        const rowData = {
+            value: updatedValue,
+            id: cellId
+        }
+        fetch('/nakleiki', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(rowData),
+        })
+    }
+
+</script>
+{% endblock %}
